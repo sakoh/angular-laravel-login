@@ -11,7 +11,8 @@ class UsersController extends \BaseController {
 	{
 		$users = User::all();
 
-		return View::make('users.index', compact('users'));
+		return Response::json(compact('users'));
+		//return View::make('users.index', compact('users'));
 	}
 
 	/**
@@ -53,7 +54,8 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		return View::make('users.show', compact('user'));
+		return Response::json(compact('user'));
+		//return View::make('users.show', compact('user'));
 	}
 
 	/**
