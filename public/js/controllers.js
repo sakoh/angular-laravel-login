@@ -16,7 +16,7 @@ angular.module('blue_media.controllers', ['restangular','ngRoute']).
     $scope.addUser = function(){
 
       Restangular.all('users').post($scope.user).then(function(model){
-        return $location.path('#/');
+        return $location.path('/');
       }, function(err){
         console.log(err);
       });
