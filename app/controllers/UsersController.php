@@ -30,15 +30,10 @@ class UsersController extends \BaseController {
 				'first_name'=> Input::get('first_name'),
 				'last_name' => Input::get('last_name'),
 				'email'     => Input::get('email'),
-				'password'  => Input::get('password'),
+				'password'  => Hash::make(Input::get('password')),
 				'activated' => true,
 			));
 
-			// Find the group using the group id
-			$adminGroup = Sentry::findGroupById(1);
-
-			// Assign the group to the user
-			$user->addGroup($adminGroup);
 		}
 		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 		{
@@ -66,10 +61,15 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = Sentry::findUserById($id);
+		try{
+			$user = Sentry::findUserById($id);
 
-		return Response::json($user);
-		//return View::make('users.show', compact('user'));
+			return Response::json($user);
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			echo 'User was not found.';
+		}
 	}
 
 	/**
@@ -93,20 +93,33 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$user = User::findOrFail($id);
-
-		$data = Input::all();
-
-		$validator = Validator::make($data, User::$rules);
-
-		if ($validator->fails())
+		try
 		{
-			return Response::json($validator->messages());
+			// Find the user using the user id
+			$user = Sentry::findUserById($id);
+
+			// Update the user details
+			$user->first_name = Input::get('first_name');
+			$user->last_name = Input::get('last_name');
+			$user->email = Input::get('email');
+			// Update the user
+			if ($user->save())
+			{
+				return Response::json($user);
+			}
+			else
+			{
+				echo 'User was not updated';
+			}
 		}
-
-		$user->update($data);
-
-		return Response::json($user);
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+			echo 'User with this login already exists.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			echo 'User was not found.';
+		}
 	}
 
 	/**

@@ -8,9 +8,9 @@ angular.module('blue_media.edit_controller', ['restangular','ngRoute']).
     $scope.editUser = function(){
 
       Restangular.one('users', $routeParams.id).get().then(function(user){
-        user.name = $scope.user.name;
+        user.first_name = $scope.user.first_name;
+        user.last_name = $scope.user.last_name;
         user.email = $scope.user.email;
-        user.password = $scope.user.password;
 
         user.put().then(function(){
           return $location.path('show/' + $routeParams.id);

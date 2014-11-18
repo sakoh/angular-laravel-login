@@ -1,10 +1,13 @@
-<form ng-submit="editUser()" method='POST'>
-  Name: <input type="text" ng-model='user.name'> <br>
-  Email: <input type="text" ng-model='user.email'> <br>
-  password: <input type="text" ng-model='user.password'> <br>
+<form ng-submit="editUser()" method='PUT'>
+  First Name: <input required type="text" ng-model='user.first_name'> <br>
+  Last Name: <input required type="text" ng-model='user.last_name'> <br>
+  Email: <input required type="text" ng-model='user.email'> <br>
   <button type="submit">submit</button>
-  <button ng-click="deleteUser()">delete</button>
-</form> <br>
+  <button ng-click='deleteUser()'>Delete</button>
+</form>
 
+
+<div ng-messages="registrationForm.confirmPassword.$error"
+ng-messages-include="messages.html"></div>
 
 <a ng-href="#/show/{{user.id}}">Back to User</a>
