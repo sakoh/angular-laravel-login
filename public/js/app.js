@@ -1,26 +1,19 @@
-angular.module('blue_media', ['restangular','ngRoute'])
+angular.module('blue_media', ['restangular','ngRoute','blue_media.controllers'])
 	.config(function($routeProvider, RestangularProvider) {
     	$routeProvider.
-      		when('/', {
-        		controller: 'IndexCtrl', 
-        		templateUrl:'./templates/index.html'
-      		}).
-      		when('/:id',{
-      			controller:'ShowCtrl',
-      			templateUrl: './templates/show.html'
-      		});
+      	when('/', {
+      		controller: 'IndexCtrl',
+      		templateUrl:'./templates/index.html'
+    		}).
+    		when('/show/:id',{
+    			controller:'ShowCtrl',
+    			templateUrl: './templates/show.html'
+    		}).
+				when('/create',{
+					controller:'CreateCtrl',
+					templateUrl: './templates/create.html'
+				});
 
-      	RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
+      RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
 
-  	}).
-  	controller('IndexCtrl',function($scope, Restangular){
-    	Restangular.all('users').getList().then(function(users){
-    		$scope.users = users;
-    	});
-	}).
-	controller('ShowCtrl', function($scope, Restangular, $routeParams){
-		Restangular.one('users', $routeParams.id).get().then(function(user){
-			$scope.user = user;
-		});
-	});
-
+  });
