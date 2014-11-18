@@ -11,7 +11,7 @@ class UsersController extends \BaseController {
 	{
 		$users = User::all();
 
-		return Response::json(compact('users'));
+		return Response::json($users);
 		//return View::make('users.index', compact('users'));
 	}
 
@@ -42,7 +42,7 @@ class UsersController extends \BaseController {
 
 		$user = User::create($data);
 
-		return Response::json(compact('user'));
+		return Response::json($user);
 		//return Redirect::route('users.index');
 	}
 

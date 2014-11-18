@@ -17,5 +17,8 @@ Route::get('/', function()
 });
 
 Route::group(array('prefix'=>'api/v1'), function(){
+	header('Access-Control-Allow-Origin: http://localhost:8000');
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 	Route::resource('/users','UsersController');
 });
