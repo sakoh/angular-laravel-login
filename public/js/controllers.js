@@ -10,15 +10,15 @@ angular.module('blue_media.controllers', ['restangular','ngRoute']).
     });
   }).
   controller('CreateCtrl', function($scope, $location, Restangular){
-    $scope.addUser = function(){
-      var user = {
-        name: $scope.name,
-        email: $scope.email,
-        password: $scope.password
-      };
 
-      Restangular.all().post('users', user).success(function(model){
+    $scope.user = {name :"", email: "", password: ""};
+
+    $scope.addUser = function(){
+
+      Restangular.all('users').post($scope.user).then(function(model){
         return $location.path('#/');
+      }, function(err){
+        console.log(err);
       });
     }
   });
