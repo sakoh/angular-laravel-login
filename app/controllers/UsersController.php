@@ -9,21 +9,12 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::all();
+		$users = Sentry::findAllUsers();
 
 		return Response::json($users);
-		//return View::make('users.index', compact('users'));
 	}
 
-	/**
-	 * Show the form for creating a new user
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('users.create');
-	}
+
 
 	/**
 	 * Store a newly created user in storage.
@@ -32,22 +23,39 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$data = [
-			'name' => Input::get('name'),
-			'email' => Input::get('email'),
-			'password' => Hash::make(Input::get('password'))
-		];
-		$validator = Validator::make($data, User::$rules);
-
-		if ($validator->fails())
+		try
 		{
-			return Response::json($validator->messages());
+			// Create the user
+			$user = Sentry::createUser(array(
+				'first_name'=> Input::get('first_name'),
+				'last_name' => Input::get('last_name'),
+				'email'     => Input::get('email'),
+				'password'  => Input::get('password'),
+				'activated' => true,
+			));
+
+			// Find the group using the group id
+			$adminGroup = Sentry::findGroupById(1);
+
+			// Assign the group to the user
+			$user->addGroup($adminGroup);
 		}
-
-		$user = User::create($data);
-
-		return Response::json($user);
-		//return Redirect::route('users.index');
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			echo 'Login field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		{
+			echo 'Password field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+			echo 'User with this login already exists.';
+		}
+		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+		{
+			echo 'Group was not found.';
+		}
 	}
 
 	/**
@@ -58,7 +66,7 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = User::findOrFail($id);
+		$user = Sentry::findUserById($id);
 
 		return Response::json($user);
 		//return View::make('users.show', compact('user'));
@@ -109,9 +117,20 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		User::destroy($id);
+		try
+		{
+			// Find the user using the user id
+			$user = Sentry::findUserById($id);
 
-		return Response::json('User is destroyed');
+			// Delete the user
+			$user->delete();
+
+			echo 'User was deleted.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			echo 'User was not found.';
+		}
 	}
 
 }

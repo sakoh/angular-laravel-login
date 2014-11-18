@@ -11,11 +11,13 @@ class UsersTableSeeder extends Seeder {
 
 		foreach(range(1, 10) as $index)
 		{
-			User::create([
-				'name' => $faker->name(),
-				'email' => $faker->email(),
-				'password' => Hash::make('bluemedia')
-			]);
+			Sentry::createUser(array(
+				'first_name'=> $faker->firstName(),
+				'last_name' => $faker->lastName(),
+				'email'     => $faker->email(),
+				'password'  => Hash::make('password'),
+				'activated' => true,
+			));
 		}
 	}
 
