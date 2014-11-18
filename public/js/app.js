@@ -1,4 +1,4 @@
-angular.module('blue_media', ['restangular','ngRoute','blue_media.controllers'])
+angular.module('blue_media', ['ngRoute','blue_media.controllers'])
 	.config(function($routeProvider, RestangularProvider) {
     	$routeProvider.
       	when('/', {
