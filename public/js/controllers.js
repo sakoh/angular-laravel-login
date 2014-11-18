@@ -22,12 +22,14 @@ angular.module('blue_media.controllers', ['restangular','ngRoute']).
       });
     }
   }).
-  controller('EditCtrl', function($scope, Restangular, $routeParams){
+  controller('EditCtrl', function($scope, Restangular, $location, $routeParams){
     Restangular.one('users', $routeParams.id).get().then(function(user){
       $scope.user = user;
     });
 
     $scope.editUser = function(){
-
+      Restangular.one('users', $routeParams.id).put().then(function(){
+        $location.path('/show/'+$routeParams.id);
+      });
     }
   });
