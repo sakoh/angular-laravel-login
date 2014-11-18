@@ -19,4 +19,12 @@ angular.module('blue_media.edit_controller', ['restangular','ngRoute']).
 
     }
 
+    $scope.deleteUser = function(){
+      Restangular.one('users', $routeParams.id).get().then(function(user){
+        user.remove().then(function(){
+          return $location.path('/');
+        });
+      });
+    }
+
   });
