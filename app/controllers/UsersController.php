@@ -87,16 +87,23 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), User::$rules);
+		$data = [
+			'name' => Input::get('name'),
+			'email' => Input::get('email'),
+			'password' => Input::get('password')
+		];
+
+		$validator = Validator::make($data, User::$rules);
 
 		if ($validator->fails())
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Response::json($validator->messages());
 		}
 
 		$user->update($data);
 
-		return Redirect::route('users.index');
+		return Response::json($user);
+		//return Redirect::route('users.index');
 	}
 
 	/**
@@ -109,7 +116,7 @@ class UsersController extends \BaseController {
 	{
 		User::destroy($id);
 
-		return Redirect::route('users.index');
+		return Response::json('User is destroyed');
 	}
 
 }
