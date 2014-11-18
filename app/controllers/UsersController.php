@@ -56,7 +56,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		return Response::json(compact('user'));
+		return Response::json($user);
 		//return View::make('users.show', compact('user'));
 	}
 
