@@ -12,6 +12,10 @@ angular.module('blue_media', ['restangular','ngRoute','blue_media.controllers'])
 				when('/create',{
 					controller:'CreateCtrl',
 					templateUrl: './templates/create.html'
+				}).
+				when('/edit/:id',{
+					controller:'EditCtrl',
+					templateUrl: './templates/edit.html'
 				});
 
       RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
