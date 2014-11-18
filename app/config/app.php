@@ -94,7 +94,7 @@ return array(
 	*/
 
 	'providers' => array(
-
+		'Cartalyst\Sentry\SentryServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
@@ -180,6 +180,7 @@ return array(
 		'Request'           => 'Illuminate\Support\Facades\Request',
 		'Response'          => 'Illuminate\Support\Facades\Response',
 		'Route'             => 'Illuminate\Support\Facades\Route',
+		'Sentry' 						=> 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'Schema'            => 'Illuminate\Support\Facades\Schema',
 		'Seeder'            => 'Illuminate\Database\Seeder',
 		'Session'           => 'Illuminate\Support\Facades\Session',
