@@ -32,12 +32,16 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$data = Input::get('user');
+		$data = [
+			'name' => Input::get('name'),
+			'email' => Input::get('email'),
+			'password' => Input::get('password')
+		];
 		$validator = Validator::make($data, User::$rules);
 
 		if ($validator->fails())
 		{
-			return $validator->messages()->toJson();
+			return Response::json($validator->messages());
 		}
 
 		$user = User::create($data);
