@@ -5,7 +5,7 @@ angular.module('blue_media', [
 	.config(function($stateProvider,$urlRouterProvider, RestangularProvider) {
 
 
-		 	//$urlRouterProvider.otherwise("home");
+		 	$urlRouterProvider.otherwise("/");
 
 			$stateProvider.
       	state('home', {
