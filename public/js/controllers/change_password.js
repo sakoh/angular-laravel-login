@@ -1,5 +1,5 @@
-angular.module('blue_media.change_password_controller', ['restangular','ngRoute']).
-  controller('ChangePasswordCtrl', function($scope, $location, Restangular, $routeParams){
+angular.module('blue_media.change_password_controller', ['restangular','ui.router']).
+  controller('ChangePasswordCtrl', function($scope, $location, Restangular, $stateParams){
 
 
     $scope.errorMessage = '';
@@ -8,7 +8,7 @@ angular.module('blue_media.change_password_controller', ['restangular','ngRoute'
 
       if($scope.user.password === $scope.user.passwordConfirm){
 
-        Restangular.one('users', $routeParams.id).get().then(function(user){
+        Restangular.one('users', $stateParams.id).get().then(function(user){
 
           user.password = $scope.user.password;
 

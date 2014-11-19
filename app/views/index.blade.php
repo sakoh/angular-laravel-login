@@ -14,10 +14,9 @@
 			echo HTML::script('js/libs/bootstrap/dist/js/bootstrap.min.js');
 			echo HTML::script('js/libs/sb-admin-2/js/sb-admin-2.js');
 			echo HTML::script('js/libs/angular/angular.min.js');
-			echo HTML::script('js/libs/angular-route/angular-route.min.js');
+			echo HTML::script('js/libs/ui-router/release/angular-ui-router.min.js');
 			echo HTML::script('js/libs/lodash/dist/lodash.min.js');
 			echo HTML::script('js/libs/restangular/dist/restangular.min.js');
-			echo HTML::script('js/directives.js');
 			echo HTML::script('js/controllers/index.js');
 			echo HTML::script('js/controllers/show.js');
 			echo HTML::script('js/controllers/create.js');
@@ -300,7 +299,7 @@
 			<!-- /.row -->
 			<div class="row">
 				<div class="container">
-					<div ng-view></div>
+					<div ui-view></div>
 				</div>
 
 			</div>

@@ -1,14 +1,5 @@
-angular.module('blue_media.create_controller', ['restangular']).
+angular.module('blue_media.create_controller', ['restangular','ui.router']).
   controller('CreateCtrl', function($scope, $location, Restangular){
-
-    /*$scope.user = {
-      first_name :"",
-      last_name:"",
-      email: "",
-      password: "",
-      passwordConfirm: ""
-    };*/
-
 
     $scope.addUser = function(){
 

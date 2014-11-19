@@ -9,7 +9,7 @@
 	</tr>
 
 	<tr ng-repeat="user in users | filter:search | orderBy:'user.id'">
-		<td><a ng-href="#/show/{{user.id}}">{{user.id}}</a></td>
+		<td><a ui-sref="show({id: user.id})">{{user.id}}</a></td>
 		<td>{{user.first_name}}</td>
 		<td>{{user.last_name}}</td>
 		<td>{{user.email}}</td>
@@ -17,4 +17,4 @@
 
 </table>
 
-<a ng-href="#/create">Add new User</a>
+<a ui-sref="create">Add new User</a>
