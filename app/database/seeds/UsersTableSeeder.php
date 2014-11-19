@@ -9,6 +9,8 @@ class UsersTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
+		$permissions = array('Administrator', 'User');
+
 		foreach(range(1, 10) as $index)
 		{
 			Sentry::createUser(array(
@@ -16,6 +18,10 @@ class UsersTableSeeder extends Seeder {
 				'last_name' => $faker->lastName(),
 				'email'     => $faker->email(),
 				'password'  => 'password',
+				'permissions' => array(
+					'admin' => rand(-1,1),
+					'users' => rand(-1,1),
+				),
 				'activated' => true,
 			));
 		}

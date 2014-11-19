@@ -26,7 +26,7 @@ Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
 
 	$user = Sentry::getUser();
 
-	//if (!$user->hasAccess('admin')) return Redirect::to('/');
+	//if (!$user->hasAccess('admin')) return Redirect::to('/admin');
 
 	Route::get('/', function()
 	{
