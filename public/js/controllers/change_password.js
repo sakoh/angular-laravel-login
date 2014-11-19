@@ -6,20 +6,21 @@ angular.module('blue_media.change_password_controller', ['restangular','ngRoute'
 
     $scope.changePassword = function(){
 
-      Restangular.one('users', $routeParams.id).get().then(function(user){
+      if($scope.user.password === $scope.user.passwordConfirm){
 
+        Restangular.one('users', $routeParams.id).get().then(function(user){
 
-        if($scope.user.password===$scope.user.passwordConfirm){
           user.password = $scope.user.password;
 
           user.put().then(function(){
             return $location.path('/');
           });
-        } else {
-          $scope.errorMessage = 'passwords have to match';
-        }
 
-      });
+        });
+
+      } else {
+        $scope.errorMessage = 'passwords have to match';
+      }
 
     }
 

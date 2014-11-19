@@ -9,7 +9,7 @@ class AuthController extends \BaseController {
 			'password' => Input::get('password'),
 		);
 		try{
-			$user = Sentry::authenticate($credentials);
+			$user = Sentry::authenticate($credentials, false);
 			if($user)
 			{
 				return Redirect::to('/');
