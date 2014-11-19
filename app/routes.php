@@ -16,12 +16,12 @@ Route::get('/', array('before' => 'Sentry', function()
 	return View::make('index');
 }));
 
-Route::post('/login', 'HomeController@postLogin');
+Route::post('/login', 'AuthController@postLogin');
 
 Route::get('/login',function(){
 	return View::make('login');
 });
 
-Route::group(array('prefix'=>'api/v1', 'before' => 'Sentry'), function(){
+Route::group(array('prefix'=>'api/v1', 'before' => 'Sentry|hasAccess'), function(){
 	Route::resource('/users','UsersController');
 });

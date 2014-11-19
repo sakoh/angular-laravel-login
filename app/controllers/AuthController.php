@@ -2,23 +2,23 @@
 
 class AuthController extends \BaseController {
 
-	public function postLogin(){
-        $data = [
-					"email" => Input::get('email'),
-					"password" => Input::get('password')
-				];
+	public function postLogin()
+	{
+		$credentials = array(
+			'email' => Input::get('email'),
+			'password' => Input::get('password'),
+		);
+		try{
+			$user = Sentry::authenticate($credentials);
+			if($user)
+			{
+				return Redirect::to('/');
+			}
+		}
 
-        $validator = Validator::make($data, User::$auth_rules);
-        if ($validator->fails())
-        {
-            return Response::json($validator->errors);
-        }
-
-        if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))){
-            return Response::json('authification successful');
-        }
-
-        //return Redirect::route('admin.login');
-    }
+		catch(\LoginRequiredException $e){
+			echo 'you have to logged in';
+		}
+	}
 
 }
