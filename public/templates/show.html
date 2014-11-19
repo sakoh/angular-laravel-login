@@ -1,7 +1,15 @@
-<b>First Name: </b>{{user.first_name}} <br>
-<b>Last Name: </b>{{user.last_name}} <br>
-<b>Email: </b> {{user.email}}
-<br>
+<h1 class="page-header">{{fullName}}</h1>
 
-<a ng-href="#/edit/{{user.id}}">Edit User</a>
-<a ng-href="#/">Back to Users</a>
+<p><b>First Name:</b> {{user.first_name}}</p>
+<p><b>Last Name:</b> {{user.last_name}}</p>
+<p><b>Email:</b> {{user.email}}</p>
+
+<hr/>
+<ul class="list-unstyled list-inline">
+  <li>
+    <a ng-href="#/edit/{{user.id}}">Edit User</a>
+  </li>
+  <li>
+    <a ng-href="#/">Back to Users</a>
+  </li>
+</ul>
