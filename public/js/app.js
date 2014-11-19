@@ -5,7 +5,7 @@ angular.module('blue_media', [
 	.config(function($stateProvider,$urlRouterProvider, RestangularProvider) {
 
 
-		 	//$urlRouterProvider.otherwise("home");
+		 	$urlRouterProvider.otherwise("/");
 
 			$stateProvider.
       	state('home', {
@@ -28,8 +28,8 @@ angular.module('blue_media', [
 					controller:'EditCtrl',
 					templateUrl: 'js/templates/edit.html'
 				}).
-				state('change_password',{
-					url: '/change_password/:id',
+				state('edit.change_password',{
+					url: '/change_password',
 					controller:'ChangePasswordCtrl',
 					templateUrl: 'js/templates/change_password.html'
 				});
