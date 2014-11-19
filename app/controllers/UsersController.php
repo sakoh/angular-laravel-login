@@ -83,9 +83,10 @@ class UsersController extends \BaseController {
 			$user = Sentry::findUserById($id);
 
 			// Update the user details
-			$user->first_name = Input::get('first_name');
-			$user->last_name = Input::get('last_name');
-			$user->email = Input::get('email');
+			if(Input::get('first_name')) $user->first_name = Input::get('first_name');
+			if(Input::get('last_name'))  $user->last_name = Input::get('last_name');
+			if(Input::get('email'))      $user->email = Input::get('email');
+			if(Input::get('password'))   $user->password = Input::get('password');
 			// Update the user
 			if ($user->save())
 			{
