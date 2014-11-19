@@ -271,6 +271,9 @@
 						<li>
 							<a ui-sref="home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 						</li>
+						<li>
+							<a ui-sref="home"><i class="fa fa-users"></i> Users</a>
+						</li>
 
 					</ul>
 				</div>
