@@ -46,6 +46,61 @@ Route::filter('Sentry', function()
 	}
 });
 
+
+/**
+* hasAcces filter (permissions)
+*
+* Check if the user has permission (group/user)
+*/
+Route::filter('hasAccess', function($route, $request, $value)
+{
+	try
+	{
+		$user = Sentry::getUser();
+
+		if( ! $user->hasAccess($value))
+		{
+			return Redirect::to('login')->withErrors(array(Lang::get('user.noaccess')));
+		}
+	}
+	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+	{
+		return Redirect::to('login')->withErrors(array(Lang::get('user.notfound')));
+	}
+
+});
+
+
+/**
+* InGroup filter
+*
+* Check if the user belongs to a group
+*/
+Route::filter('inGroup', function($route, $request, $value)
+{
+	try
+	{
+		$user = Sentry::getUser();
+
+		$group = Sentry::findGroupByName($value);
+
+		if( ! $user->inGroup($group))
+		{
+			return Redirect::to('login')->withErrors(array(Lang::get('user.noaccess')));
+		}
+	}
+	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+	{
+		return Redirect::to('login')->withErrors(array(Lang::get('user.notfound')));
+	}
+
+	catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+	{
+		return Redirect::to('login')->withErrors(array(Lang::get('group.notfound')));
+	}
+});
+
+
 Route::filter('auth', function()
 {
 	if (Auth::guest())

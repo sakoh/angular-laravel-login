@@ -23,6 +23,7 @@
 		?>
 </head>
 <body ng-app="blue_media">
+			
       <div ng-view></div>
 </body>
 </html>
