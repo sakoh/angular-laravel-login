@@ -7,20 +7,24 @@ angular.module('blue_media', [
     	$routeProvider.
       	when('/', {
       		controller: 'IndexCtrl',
-      		templateUrl:'./templates/index.html'
+      		templateUrl:'js/templates/index.html'
     		}).
     		when('/show/:id',{
     			controller:'ShowCtrl',
-    			templateUrl: './templates/show.html'
+    			templateUrl: 'js/templates/show.html'
     		}).
 				when('/create',{
 					controller:'CreateCtrl',
-					templateUrl: './templates/create.html'
+					templateUrl: 'js/templates/create.html'
 				}).
 				when('/edit/:id',{
 					controller:'EditCtrl',
-					templateUrl: './templates/edit.html'
-				});
+					templateUrl: 'js/templates/edit.html'
+				}).
+				when('/change_password/:id',{
+					controller:'ChangePasswordCtrl',
+					templateUrl: 'js/templates/change_password.html'
+				});;
 
       RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
 

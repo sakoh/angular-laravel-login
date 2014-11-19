@@ -18,6 +18,7 @@
 			echo HTML::script('js/controllers/show.js');
 			echo HTML::script('js/controllers/create.js');
 			echo HTML::script('js/controllers/edit.js');
+			echo HTML::script('js/controllers/change_password.js');
 			echo HTML::script('js/controllers.js');
 			echo HTML::script('js/app.js');
 		?>
