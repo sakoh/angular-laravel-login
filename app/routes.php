@@ -21,7 +21,12 @@ Route::group(array('before' => 'Sentry'),function(){
 	Route::get('logout', 'AuthController@logout');
 });
 
-Route::group(array('prefix' => 'admin','before' => 'Sentry'),function(){
+Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
+
+
+	$user = Sentry::getUser();
+
+	//if (!$user->hasAccess('admin')) return Redirect::to('/');
 
 	Route::get('/', function()
 	{
@@ -40,9 +45,9 @@ Route::get('/login',function(){
 });
 
 
-Route::post('admin/login', 'AdminController@postLogin');
+Route::post('/admin/login', 'AdminController@postLogin');
 
-Route::get('admin/login',function(){
+Route::get('/admin/login',function(){
 	return View::make('admin/login');
 });
 

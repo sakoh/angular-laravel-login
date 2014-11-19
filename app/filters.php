@@ -46,6 +46,13 @@ Route::filter('Sentry', function()
 	}
 });
 
+Route::filter('AdminSentry', function()
+{
+	if ( ! Sentry::check()) {
+		return Redirect::to('admin/login');
+	}
+});
+
 
 /**
 * hasAcces filter (permissions)

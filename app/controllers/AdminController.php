@@ -16,6 +16,9 @@ class AdminController extends \BaseController {
       }
     }
 
+    catch(\LoginRequiredException $e){
+      echo 'you have to logged in';
+    }
   }
 
   public function logout()
