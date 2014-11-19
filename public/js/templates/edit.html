@@ -16,7 +16,8 @@
 
     <button class="btn btn-primary" ng-click='deleteUser()'>Delete</button>
   </form>
-  <a ui-sref="edit.change_password">Change password</a>
+  <a ui-sref="user({id: user.id})">Back to User</a>
+  <a ui-sref="user.edit.change_password">Change password</a>
 </div>
 
 <div class='col-md-6' ui-view>
