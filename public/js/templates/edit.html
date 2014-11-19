@@ -19,4 +19,10 @@
   <a ui-sref="edit.change_password">Change password</a>
 </div>
 
-<div class='col-md-6' ui-view></div>
+<div class='col-md-6' ui-view>
+  <h1 class="page-header">{{user.first_name}} {{user.last_name}}</h1>
+
+  <p><b>First Name:</b> {{user.first_name}}</p>
+  <p><b>Last Name:</b> {{user.last_name}}</p>
+  <p><b>Email:</b> {{user.email}}</p>
+</div>
