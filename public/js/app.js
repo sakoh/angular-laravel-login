@@ -13,8 +13,8 @@ angular.module('blue_media', [
       		controller: 'IndexCtrl',
       		templateUrl:'js/templates/index.html'
     		}).
-    		state('show',{
-					url: '/show/:id',
+    		state('user',{
+					url: '/user/:id',
     			controller:'ShowCtrl',
     			templateUrl: 'js/templates/show.html'
     		}).
@@ -23,12 +23,12 @@ angular.module('blue_media', [
 					controller:'CreateCtrl',
 					templateUrl: 'js/templates/create.html'
 				}).
-				state('edit',{
-					url:'/edit/:id',
+				state('user.edit',{
+					url:'/edit',
 					controller:'EditCtrl',
 					templateUrl: 'js/templates/edit.html'
 				}).
-				state('edit.change_password',{
+				state('user.edit.change_password',{
 					url: '/change_password',
 					controller:'ChangePasswordCtrl',
 					templateUrl: 'js/templates/change_password.html'

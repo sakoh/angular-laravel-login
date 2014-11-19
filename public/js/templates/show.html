@@ -1,15 +1,16 @@
-<h1 class="page-header">{{user.first_name}} {{user.last_name}}</h1>
-
-<p><b>First Name:</b> {{user.first_name}}</p>
-<p><b>Last Name:</b> {{user.last_name}}</p>
-<p><b>Email:</b> {{user.email}}</p>
-
-<hr/>
-<ul class="list-unstyled list-inline">
-  <li>
-    <a ui-sref="edit({id: user.id})">Edit User</a>
-  </li>
-  <li>
-    <a ui-sref="home">Back to Users</a>
-  </li>
-</ul>
+<div ui-view>
+  <h1 class="page-header">{{user.first_name}} {{user.last_name}}</h1>
+  <p><b>First Name:</b> {{user.first_name}}</p>
+  <p><b>Last Name:</b> {{user.last_name}}</p>
+  <p><b>Email:</b> {{user.email}}</p>
+  <hr/>
+  <ul class="list-unstyled list-inline">
+    <li>
+      <a ui-sref="user.edit">Edit User</a>
+    </li>
+    <li>
+      <a ui-sref="home">Back to Users</a>
+    </li>
+  </ul>
+  
+</div>
