@@ -48,9 +48,20 @@ Route::filter('Sentry', function()
 
 Route::filter('AdminSentry', function()
 {
-	if ( ! Sentry::check()) {
-		return Redirect::to('admin/login');
+	try
+	{
+		$user = Sentry::getUser();
+
+		if( ! $user->hasAccess('admin'))
+		{
+			return Redirect::to('admin/login')->withErrors(array(Lang::get('user.noaccess')));
+		}
 	}
+	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+	{
+		return Redirect::to('admin/login')->withErrors(array(Lang::get('user.notfound')));
+	}
+
 });
 
 
@@ -67,12 +78,12 @@ Route::filter('hasAccess', function($route, $request, $value)
 
 		if( ! $user->hasAccess($value))
 		{
-			return Redirect::to('admin/login')->withErrors(array(Lang::get('user.noaccess')));
+			return Redirect::to('login')->withErrors(array(Lang::get('user.noaccess')));
 		}
 	}
 	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 	{
-		return Redirect::to('admin/login')->withErrors(array(Lang::get('user.notfound')));
+		return Redirect::to('login')->withErrors(array(Lang::get('user.notfound')));
 	}
 
 });

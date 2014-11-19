@@ -21,7 +21,7 @@ Route::group(array('before' => 'Sentry'),function(){
 	Route::get('logout', 'AuthController@logout');
 });
 
-Route::group(array('prefix' => 'admin','before' => 'AdminSentry|hasAccess:Admins'),function(){
+Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
 
 
 	$user = Sentry::getUser();
