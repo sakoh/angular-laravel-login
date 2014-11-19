@@ -1,5 +1,3 @@
-<h2>Welcome to Login</h2>
-
 <?php
 
 echo HTML::style('js/libs/bootstrap/dist/css/bootstrap.min.css');
@@ -18,7 +16,7 @@ echo HTML::script('js/controllers.js');
 echo HTML::script('js/app.js');
 ?>
 
-<div class="col-md-4 col-md-offset-4">
+<div class="col-md-4 col-md-offset-4" style="padding-top: 20px;">
   <div class="panel panel-info">
     <div class="panel-heading">Please Login</div>
     <div class="panel-body">
