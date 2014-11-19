@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', array('before' => 'Sentry', function()
-{
-	return View::make('index');
-}));
+Route::group(array('before' => 'Sentry'),function(){
+
+	Route::get('/', function()
+	{
+		return View::make('index');
+	});
+
+	Route::get('logout', 'AuthController@logout');
+});
+
 
 Route::post('/login', 'AuthController@postLogin');
 

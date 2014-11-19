@@ -23,7 +23,10 @@
 		?>
 </head>
 <body ng-app="blue_media">
-			
-      <div ng-view></div>
+
+	{{ HTML::link('logout', 'Logout', array('class' => 'btn btn-warning'))}}
+			<div class="container">
+				<div ng-view></div>
+			</div>
 </body>
 </html>
