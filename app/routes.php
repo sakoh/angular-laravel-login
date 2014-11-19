@@ -21,12 +21,31 @@ Route::group(array('before' => 'Sentry'),function(){
 	Route::get('logout', 'AuthController@logout');
 });
 
+Route::group(array('prefix' => 'admin','before' => 'Sentry'),function(){
+
+	Route::get('/', function()
+	{
+		return View::make('admin/index');
+	});
+
+	Route::get('logout', 'AdminController@logout');
+
+});
+
 
 Route::post('/login', 'AuthController@postLogin');
 
 Route::get('/login',function(){
 	return View::make('login');
 });
+
+
+Route::post('admin/login', 'AdminController@postLogin');
+
+Route::get('admin/login',function(){
+	return View::make('admin/login');
+});
+
 
 Route::group(array('prefix'=>'api/v1', 'before' => 'Sentry'), function(){
 	Route::resource('/users','UsersController');

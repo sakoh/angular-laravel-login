@@ -245,7 +245,7 @@
             </li>
             <li class="divider"></li>
             <li>
-              {{ HTML::link('logout', 'admin/Logout', array('class' => 'fa fa-sign-out fa-fw'))}}
+              {{ HTML::link('logout', 'Logout', array('class' => 'fa fa-sign-out fa-fw'))}}
             </li>
           </ul>
           <!-- /.dropdown-user -->
