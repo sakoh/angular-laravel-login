@@ -30,7 +30,7 @@ class UsersController extends \BaseController {
 				'first_name'=> Input::get('first_name'),
 				'last_name' => Input::get('last_name'),
 				'email'     => Input::get('email'),
-				'password'  => Hash::make(Input::get('password')),
+				'password'  => Input::get('password'),
 				'activated' => true,
 			));
 
@@ -46,10 +46,6 @@ class UsersController extends \BaseController {
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
 			echo 'User with this login already exists.';
-		}
-		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
-		{
-			echo 'Group was not found.';
 		}
 	}
 
@@ -72,18 +68,6 @@ class UsersController extends \BaseController {
 		}
 	}
 
-	/**
-	 * Show the form for editing the specified user.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$user = User::find($id);
-
-		return View::make('users.edit', compact('user'));
-	}
 
 	/**
 	 * Update the specified user in storage.

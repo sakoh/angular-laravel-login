@@ -11,11 +11,17 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', array('before' => 'Sentry', function()
 {
 	return View::make('index');
+}));
+
+Route::post('/login', 'HomeController@postLogin');
+
+Route::get('/login',function(){
+	return View::make('login');
 });
 
-Route::group(array('prefix'=>'api/v1'), function(){
+Route::group(array('prefix'=>'api/v1', 'before' => 'Sentry'), function(){
 	Route::resource('/users','UsersController');
 });

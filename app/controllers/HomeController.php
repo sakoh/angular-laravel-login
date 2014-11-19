@@ -20,4 +20,28 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
+	public function postLogin()
+	{
+		$credentials = array(
+			'email' => Input::get('email'),
+			'password' => Input::get('password'),
+		);
+		try{
+			$user = Sentry::authenticate($credentials, false);
+			if($user)
+			{
+				return Redirect::route('/');
+			}
+		}
+
+		catch (\Exception $e)
+		{
+			echo 'login failed, try again';
+		}
+		catch(\LoginRequiredException $e){
+			echo 'you have to logged in';
+		}
+	}
+
+
 }

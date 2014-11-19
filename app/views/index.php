@@ -5,6 +5,10 @@
 	<title>Laravel PHP Framework</title>
 
 		<?php
+
+			echo HTML::style('js/libs/bootstrap/dist/css/bootstrap.min.css');
+			echo HTML::script('js/libs/jquery/dist/jquery.min.js');
+			echo HTML::script('js/libs/bootstrap/dist/js/bootstrap.min.js');
 			echo HTML::script('js/libs/angular/angular.min.js');
 			echo HTML::script('js/libs/angular-route/angular-route.min.js');
 			echo HTML::script('js/libs/lodash/dist/lodash.min.js');
