@@ -236,7 +236,7 @@
 				</li>
 				<!-- /.dropdown -->
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="">
 						<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-user">
@@ -313,9 +313,6 @@
 
 	</div>
 
-	<!--{{ HTML::link('logout', 'Logout', array('class' => 'btn btn-warning'))}}
-			<div class="container">
-				<div ng-view></div>
-			</div>-->
+
 </body>
 </html>
