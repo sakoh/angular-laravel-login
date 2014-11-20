@@ -13,6 +13,11 @@ angular.module('blue_media', [
 					controller:'IndexCtrl',
 					templateUrl:'js/templates/index.html'
 				}).
+				state('home.register',{
+					url: 'register',
+					controller: 'RegisterCtrl',
+					templateUrl:'js/templates/register.html'
+				}).
       	state('admin', {
 					url:'admin',
       		templateUrl:'js/templates/admin/index.html',
