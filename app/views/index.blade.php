@@ -17,10 +17,10 @@
     echo HTML::script('js/libs/lodash/dist/lodash.min.js');
     echo HTML::script('js/libs/restangular/dist/restangular.min.js');
     echo HTML::script('js/controllers/index.js');
-    echo HTML::script('js/controllers/users/show.js');
-    echo HTML::script('js/controllers/users/create.js');
-    echo HTML::script('js/controllers/users/edit.js');
-    echo HTML::script('js/controllers/users/change_password.js');
+    echo HTML::script('js/controllers/admin/users/show.js');
+    echo HTML::script('js/controllers/admin/users/create.js');
+    echo HTML::script('js/controllers/admin/users/edit.js');
+    echo HTML::script('js/controllers/admin/users/change_password.js');
     echo HTML::script('js/controllers.js');
     echo HTML::script('js/app.js');
   ?>

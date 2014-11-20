@@ -12,12 +12,12 @@ angular.module('blue_media', [
 					url:'/',
 					controller:'IndexCtrl',
 					templateUrl:'js/templates/index.html'
-				});/*.
+				}).
       	state('admin', {
 					url:'admin',
-      		controller: 'AdminIndexCtrl',
-      		templateUrl:'js/templates/admin/user/index.html'
-    		}).
+      		templateUrl:'js/templates/admin/index.html',
+					controller: function(){}
+    		}); /*.
 				state('admin.login',{
 					url: 'admin/login',
 					controller:'AdminLoginCtrl',

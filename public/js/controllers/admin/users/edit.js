@@ -1,4 +1,4 @@
-angular.module('blue_media.user_edit_controller', [
+angular.module('blue_media.admin_user_edit_controller', [
   'restangular',
   'ui.router'
 ]).
