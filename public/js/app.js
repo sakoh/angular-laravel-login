@@ -2,15 +2,20 @@ angular.module('blue_media', [
 		'ui.router',
 		'blue_media.controllers'
 	])
-	.config(function($stateProvider,$urlRouterProvider, RestangularProvider) {
+	.config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
 
 
 		 	$urlRouterProvider.otherwise("/");
 
 			$stateProvider.
-      	state('admin', {
+				state('home',{
 					url:'/',
-      		controller: 'IndexCtrl',
+					controller:'IndexCtrl',
+					templateUrl:'js/templates/index.html'
+				});/*.
+      	state('admin', {
+					url:'admin',
+      		controller: 'AdminIndexCtrl',
       		templateUrl:'js/templates/admin/user/index.html'
     		}).
 				state('admin.login',{
@@ -37,7 +42,7 @@ angular.module('blue_media', [
 					url: '/change_password',
 					controller:'ChangePasswordCtrl',
 					templateUrl: 'js/templates/admin/user/change_password.html'
-				});
+				});*/
 
       RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
 

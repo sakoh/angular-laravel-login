@@ -16,14 +16,15 @@
     echo HTML::script('js/libs/lodash/dist/lodash.min.js');
     echo HTML::script('js/libs/restangular/dist/restangular.min.js');
     echo HTML::script('js/controllers/index.js');
-    echo HTML::script('js/controllers/show.js');
-    echo HTML::script('js/controllers/create.js');
-    echo HTML::script('js/controllers/edit.js');
-    echo HTML::script('js/controllers/change_password.js');
+    echo HTML::script('js/controllers/users/show.js');
+    echo HTML::script('js/controllers/users/create.js');
+    echo HTML::script('js/controllers/users/edit.js');
+    echo HTML::script('js/controllers/users/change_password.js');
     echo HTML::script('js/controllers.js');
     echo HTML::script('js/app.js');
   ?>
 </head>
+<body ng-app='blue_media'>
   <div ui-view></div>
 </body>
 </html>
