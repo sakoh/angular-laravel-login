@@ -8,6 +8,7 @@
     echo HTML::style('js/libs/bootstrap/dist/css/bootstrap.min.css');
     echo HTML::style('js/libs/sb-admin-2/css/sb-admin-2.css');
     echo HTML::style('js/libs/sb-admin-2/font-awesome-4.1.0/css/font-awesome.min.css');
+    echo HTML::style('css/custom.css');
     echo HTML::script('js/libs/jquery/dist/jquery.min.js');
     echo HTML::script('js/libs/bootstrap/dist/js/bootstrap.min.js');
     echo HTML::script('js/libs/sb-admin-2/js/sb-admin-2.js');
