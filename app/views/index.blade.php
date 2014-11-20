@@ -16,6 +16,7 @@
     echo HTML::script('js/libs/ui-router/release/angular-ui-router.min.js');
     echo HTML::script('js/libs/lodash/dist/lodash.min.js');
     echo HTML::script('js/libs/restangular/dist/restangular.min.js');
+    echo HTML::script('js/services.js');
     echo HTML::script('js/controllers/index.js');
     echo HTML::script('js/controllers/register.js');
     echo HTML::script('js/controllers/admin/users/show.js');
