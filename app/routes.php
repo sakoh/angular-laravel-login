@@ -11,47 +11,26 @@
 |
 */
 
-Route::group(array('before' => 'Sentry'),function(){
+Route::group(array('prefix'=>'api/v1'), function(){
 
-	Route::get('/', function()
-	{
-		return View::make('index');
+
+	Route::post('/login', 'AuthController@postLogin');
+
+	Route::post('/admin/login', 'AdminController@postLogin');
+
+
+	Route::group(array('before' => 'Sentry'),function(){
+
+		Route::resource('/users','UsersController');
+		Route::get('logout', 'AuthController@logout');
+
 	});
 
-	Route::get('logout', 'AuthController@logout');
-});
+	Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
 
-Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
+		Route::resource('/users','UsersController');
+		Route::get('logout', 'AdminController@logout');
 
-
-	$user = Sentry::getUser();
-
-	//if (!$user->hasAccess('admin')) return Redirect::to('/admin');
-
-	Route::get('/', function()
-	{
-		return View::make('admin/index');
 	});
 
-	Route::get('logout', 'AdminController@logout');
-
-});
-
-
-Route::post('/login', 'AuthController@postLogin');
-
-Route::get('/login',function(){
-	return View::make('login');
-});
-
-
-Route::post('/admin/login', 'AdminController@postLogin');
-
-Route::get('/admin/login',function(){
-	return View::make('admin/login');
-});
-
-
-Route::group(array('prefix'=>'api/v1', 'before' => 'Sentry'), function(){
-	Route::resource('/users','UsersController');
 });
