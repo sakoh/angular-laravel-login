@@ -1,5 +1,8 @@
-angular.module('blue_media.edit_controller', ['restangular','ui.router']).
-  controller('EditCtrl', function($scope, Restangular, $location, $stateParams){
+angular.module('blue_media.user_edit_controller', [
+  'restangular',
+  'ui.router'
+]).
+  controller('UserEditCtrl', function($scope, Restangular, $location, $stateParams){
 
     Restangular.one('users', $stateParams.id).get().then(function(user){
       $scope.user = user;

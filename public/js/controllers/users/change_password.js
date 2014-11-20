@@ -1,4 +1,7 @@
-angular.module('blue_media.change_password_controller', ['restangular','ui.router']).
+angular.module('blue_media.change_password_controller', [
+  'restangular',
+  'ui.router'
+]).
   controller('ChangePasswordCtrl', function($scope, $location, Restangular, $stateParams){
 
 
