@@ -6,7 +6,7 @@ angular.module('blue_media.services', ['restangular'])
       first_name: '',
       last_name: '',
       email: '',
-      password: ''
+      password: '',
       permissions: {
         admin: -1,
         users: 1
@@ -18,7 +18,7 @@ angular.module('blue_media.services', ['restangular'])
 
     var AuthService = {
 
-      int: function (isAuthenticated, first_name, last_name, last_name, email, password) {
+      init: function (isAuthenticated, first_name, last_name, last_name, email, password) {
         user.isAuthenticated = isAuthenticated;
         user.first_name = first_name;
         user.last_name = last_name;

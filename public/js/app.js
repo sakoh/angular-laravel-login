@@ -1,5 +1,7 @@
 angular.module('blue_media', [
 		'ui.router',
+		'blue_media.services',
+		'blue_media.config',
 		'blue_media.controllers'
 	])
 	.config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
@@ -18,10 +20,14 @@ angular.module('blue_media', [
 					controller: 'RegisterCtrl',
 					templateUrl:'js/templates/register.html'
 				}).
-      	state('admin', {
+				protectedState('admin','admin','js/templates/admin/index.html',function () {
+				  // body...
+				});/*
+      	protectedState('admin', {
 					url:'admin',
       		templateUrl:'js/templates/admin/index.html',
-					controller: function(){}
+					controller: function(){},
+
     		}); /*.
 				state('admin.login',{
 					url: 'admin/login',
@@ -48,7 +54,5 @@ angular.module('blue_media', [
 					controller:'ChangePasswordCtrl',
 					templateUrl: 'js/templates/admin/user/change_password.html'
 				});*/
-
-      RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
 
   });
