@@ -1,7 +1,7 @@
 angular.module('blue_media', [
 		'ui.router',
 		'blue_media.services',
-		'blue_media.config',
+		//'blue_media.config',
 		'blue_media.controllers'
 	])
 	.config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
@@ -19,10 +19,7 @@ angular.module('blue_media', [
 					url: 'register',
 					controller: 'RegisterCtrl',
 					templateUrl:'js/templates/register.html'
-				}).
-				protectedState('admin','admin','js/templates/admin/index.html',function () {
-				  // body...
-				});/*
+				})/*
       	protectedState('admin', {
 					url:'admin',
       		templateUrl:'js/templates/admin/index.html',

@@ -21,7 +21,7 @@
   <div class="form-group">
     <label for="password" class="control-label col-sm-2">Password</label>
     <div class="col-sm-10">
-      <input type="password" data-ng-model="password" placeholder="Password" name="password" required="required" data-ng-minlength="5" data-ng-maxlength="60" class="form-control"/>
+      <input type="password" data-ng-model="user.password" placeholder="Password" name="password" required="required" data-ng-minlength="5" data-ng-maxlength="60" class="form-control"/>
     </div>
   </div>
   <div class="form-group">
@@ -31,9 +31,20 @@
   </div>
   <div ng-show="registerForm.$invalid &amp;&amp; registerForm.$dirty" class="alert alert-danger"><strong>Please correct the following errors:</strong>
     <ul>
-      <li ng-show="registerForm.username.$error.required">Username is required</li>
-      <li ng-show="registerForm.username.$error.minlength">Username has to be at least 1 character long</li>
-      <li ng-show="registerForm.username.$error.maxlength">Username has to be at most 20 character long</li>
+      <li ng-show="registerForm.first_name.$error.required">First name is required</li>
+      <li ng-show="registerForm.first_name.$error.minlength">First name has to be at least 1 character long</li>
+      <li ng-show="registerForm.first_name.$error.maxlength">First name has to be at most 20 character long</li>
+
+      <li ng-show="registerForm.last_name.$error.required">Last name is required</li>
+      <li ng-show="registerForm.last_name.$error.minlength">Last name has to be at least 1 character long</li>
+      <li ng-show="registerForm.last_name.$error.maxlength">Last name has to be at most 20 character long</li>
+
+      <li ng-show="registerForm.email.$error.required">Email is required</li>
+      <li ng-show="registerForm.email.$error.minlength">Email has to be at least 1 character long</li>
+      <li ng-show="registerForm.email.$error.maxlength">Email has to be at most 20 character long</li>
+
+
+
       <li ng-show="registerForm.password.$error.required">Password is required</li>
       <li ng-show="registerForm.password.$error.minlength">Password must be at least 5 characters long</li>
       <li ng-show="registerForm.password.$error.maxlength">Password must be at most 60 characters long</li>
