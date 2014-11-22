@@ -16,7 +16,7 @@
     {{ HTML::script('js/libs/ui-router/release/angular-ui-router.min.js')}}
     {{ HTML::script('js/libs/lodash/dist/lodash.min.js')}}
     {{ HTML::script('js/libs/restangular/dist/restangular.min.js')}}
-    {{ HTML::script('js/services/login.js')}}
+    {{ HTML::script('js/libs/satellizer/satellizer.min.js')}}
     {{ HTML::script('js/controllers/index.js')}}
     {{ HTML::script('js/directives.js')}}
     {{ HTML::script('js/controllers/register.js')}}

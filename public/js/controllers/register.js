@@ -2,7 +2,7 @@ angular.module('blue_media.register_controller',[
   'blue_media.directives',
   'restangular'
 ]).
-  controller('RegisterCtrl', function($scope, Auth, Restangular, $location){
+  controller('RegisterCtrl', function($scope, Restangular, $location){
 
     $scope.register = function() {
 
