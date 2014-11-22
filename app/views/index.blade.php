@@ -24,6 +24,7 @@
     {{ HTML::script('js/services.js')}}
     {{ HTML::script('js/config.js')}}
     {{ HTML::script('js/controllers/index.js')}}
+    {{ HTML::script('js/directives.js')}}
     {{ HTML::script('js/controllers/register.js')}}
     {{ HTML::script('js/controllers/login.js')}}
     {{ HTML::script('js/controllers/admin/users/show.js')}}
