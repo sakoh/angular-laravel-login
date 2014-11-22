@@ -2,26 +2,16 @@ angular.module('blue_media.login_controller',[
   'restangular',
   'satellizer'
 ])
-.controller('LoginCtrl', function($scope, $alert, $auth) {
+.controller('LoginCtrl', function($scope, $auth) {
 
   $scope.login = function() {
 
     $auth.login({ email: $scope.user.email, password: $scope.user.password })
-    .then(function() {
-      $alert({
-        content: 'You have successfully logged in',
-        animation: 'fadeZoomFadeDown',
-        type: 'material',
-        duration: 3
-      });
+    .success(function() {
+      alert('You have successfully logged in');
     })
-    .catch(function(response) {
-      $alert({
-        content: response.data.message,
-        animation: 'fadeZoomFadeDown',
-        type: 'material',
-        duration: 3
-      });
+    .error(function(response) {
+      alert(response.data.message);
     });
 
   };
@@ -29,21 +19,13 @@ angular.module('blue_media.login_controller',[
   $scope.authenticate = function(provider) {
 
     $auth.authenticate(provider)
-    .then(function() {
-      $alert({
-        content: 'You have successfully logged in',
-        animation: 'fadeZoomFadeDown',
-        type: 'material',
-        duration: 3
-      });
+    .success(function() {
+
+      alert('You have successfully logged in');
     })
-    .catch(function(response) {
-      $alert({
-        content: response.data.message,
-        animation: 'fadeZoomFadeDown',
-        type: 'material',
-        duration: 3
-      });
+    .error(function(response) {
+
+      alert(response.data.message);
     });
 
   };
