@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Tymon\JWTAuth\JWTAuthServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider'
 
 	),
@@ -187,6 +188,7 @@ return array(
 		'SoftDeletingTrait' => 'Illuminate\Database\Eloquent\SoftDeletingTrait',
 		'SSH'               => 'Illuminate\Support\Facades\SSH',
 		'Str'               => 'Illuminate\Support\Str',
+		'JWTAuth' 					=> 'Tymon\JWTAuth\Facades\JWTAuth',
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',

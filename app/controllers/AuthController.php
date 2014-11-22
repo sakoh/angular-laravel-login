@@ -4,27 +4,15 @@ class AuthController extends \BaseController {
 
 	public function postLogin()
 	{
-		$credentials = array(
-			'email' => Input::get('email'),
-			'password' => Input::get('password'),
-		);
-		try{
-			$user = Sentry::authenticate($credentials, false);
-			if($user)
-			{
-				return Redirect::to('/');
-			}
+		$credentials = Input::only('email', 'password');
+
+		if ( ! $token = JWTAuth::attempt($credentials) )
+		{
+			// return 401 error response
+			return Response::json(['error' => 'Incorrect email or password'],401);
 		}
 
-		catch(\LoginRequiredException $e){
-			echo 'you have to logged in';
-		}
-	}
-
-	public function logout()
-	{
-		Sentry::logout();
-		return Redirect::to('/');
+		return Response::json(compact('token'));
 	}
 
 }
