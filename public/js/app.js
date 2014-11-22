@@ -1,9 +1,7 @@
 angular.module('blue_media', [
 		'ui.router',
-		'blue_media.services',
-		//'blue_media.config',
-		'blue_media.controllers',
-		'restangular'
+		'restangular',
+		'blue_media.controllers'
 	])
 	.config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
 

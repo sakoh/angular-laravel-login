@@ -12,7 +12,7 @@ class AuthController extends \BaseController {
 			return Response::json(['error' => 'Incorrect email or password'],401);
 		}
 
-		return Response::json(compact('auth_token'));
+		return Response::json([ 'userToken' => $token ]);
 	}
 
 }

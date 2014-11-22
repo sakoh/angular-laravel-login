@@ -16,13 +16,7 @@
     {{ HTML::script('js/libs/ui-router/release/angular-ui-router.min.js')}}
     {{ HTML::script('js/libs/lodash/dist/lodash.min.js')}}
     {{ HTML::script('js/libs/restangular/dist/restangular.min.js')}}
-    {{ HTML::script('js/services/local-service.js')}}
-    {{ HTML::script('js/services/auth.js')}}
-    {{ HTML::script('js/services/auth-intercepter.js')}}
-    {{ HTML::script('js/services/current-user.js')}}
-    {{ HTML::script('js/services/messages.js')}}
-    {{ HTML::script('js/services.js')}}
-    {{ HTML::script('js/config.js')}}
+    {{ HTML::script('js/services/login.js')}}
     {{ HTML::script('js/controllers/index.js')}}
     {{ HTML::script('js/directives.js')}}
     {{ HTML::script('js/controllers/register.js')}}
