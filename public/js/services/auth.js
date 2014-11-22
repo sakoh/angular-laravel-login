@@ -2,7 +2,7 @@ angular.module('blue_media.auth_services', ['restangular'])
   .constant('AccessLevels', {
     anon: 0,
     user: 1
-  }).factory('Auth', function($http, LocalService, AccessLevels) {
+  }).factory('Auth', function($http, LocalService, AccessLevels, Restangular) {
     return {
       authorize: function(access) {
         if (access === AccessLevels.user) {
@@ -26,14 +26,21 @@ angular.module('blue_media.auth_services', ['restangular'])
         LocalService.unset('auth_token');
       },
       register: function(formData) {
+
         LocalService.unset('auth_token');
 
-        var register = $http.post('/auth/register', formData);
-        register.success(function(result) {
+        var user = Restangular.all('users').post(FormData);
+
+        user.then(function(result) {
           LocalService.set('auth_token', JSON.stringify(result));
+        }, function(error) {
+          console.log(error);
         });
 
-        return register;
+        return user;
+
       }
+
     }
+
   });

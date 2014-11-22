@@ -22,17 +22,16 @@ Route::group(array('prefix'=>'api/v1'), function(){
 
 	Route::post('/admin/login', 'AdminController@postLogin');
 
+	Route::resource('/users','UsersController');
 
 	Route::group(array('before' => 'Sentry'),function(){
 
-		Route::resource('/users','UsersController');
 		Route::get('logout', 'AuthController@logout');
 
 	});
 
 	Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
 
-		Route::resource('/users','UsersController');
 		Route::get('logout', 'AdminController@logout');
 
 	});

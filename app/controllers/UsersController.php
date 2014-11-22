@@ -23,31 +23,24 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		try
-		{
-			// Create the user
-			$user = Sentry::createUser(array(
-				'first_name'=> Input::get('first_name'),
-				'last_name' => Input::get('last_name'),
-				'email'     => Input::get('email'),
-				'password'  => Input::get('password'),
-				'activated' => true,
-			));
 
-		}
-		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
-		{
-			echo 'Login field is required.';
-		}
-		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
-		{
-			echo 'Password field is required.';
-		}
-		catch (Cartalyst\Sentry\Users\UserExistsException $e)
-		{
-			echo 'User with this login already exists.';
-		}
+		$data = [];
+
+		if(Input::get('first_name')) $data->first_name = Input::get('first_name');
+		if(Input::get('last_name'))  $data->last_name = Input::get('last_name');
+		if(Input::get('email'))      $data->email = Input::get('email');
+		if(Input::get('password'))   $data->password = Input::get('password');
+
+		// Create the user
+		$data->permissions = array(
+			users => 1,
+			admin = -1
+		);
+
+		$user = Sentry::createUser($data);
+
 	}
+
 
 	/**
 	 * Display the specified user.

@@ -2,11 +2,12 @@ angular.module('blue_media', [
 		'ui.router',
 		'blue_media.services',
 		//'blue_media.config',
-		'blue_media.controllers'
+		'blue_media.controllers',
+		'restangular'
 	])
 	.config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
 
-
+			RestangularProvider.setBaseUrl('http://localhost/blue_media/public/api/v1');
 		 	$urlRouterProvider.otherwise("/");
 
 			$stateProvider.
