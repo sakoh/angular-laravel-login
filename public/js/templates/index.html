@@ -18,14 +18,7 @@
       </ul>
       <ul class="nav navbar-right navbar-nav">
         <li class="dropdown" id="menuLogin">
-          <a class="dropdown-toggle" href="" data-toggle="dropdown" id="navLogin">Login <span class="glyphicon glyphicon-log-in"></span></a>
-          <div class="dropdown-menu" style="padding:17px;">
-            <form class="form" id="formLogin">
-              <input name="email" id="email" required ng-model="user.email" type="text" placeholder="email">
-              <input name="password" id="password" required ng-model="user.password" type="password" placeholder="Password"><br>
-              <button type="button" id="btnLogin" class="btn btn-primary">Login</button>
-            </form>
-          </div>
+          <a class="dropdown-toggle" ui-sref="home.login" data-toggle="dropdown" id="navLogin">Login <span class="glyphicon glyphicon-log-in"></span></a>
         </li>
       </ul>
     </nav>

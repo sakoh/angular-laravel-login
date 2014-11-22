@@ -19,6 +19,11 @@ angular.module('blue_media', [
 					url: 'register',
 					controller: 'RegisterCtrl',
 					templateUrl:'js/templates/register.html'
+				}).
+				state('home.login',{
+					url:'login',
+					controller: 'LoginCtrl',
+					templateUrl: 'js/templates/login.html'
 				})/*
       	protectedState('admin', {
 					url:'admin',
