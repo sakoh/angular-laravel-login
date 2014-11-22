@@ -9,7 +9,9 @@
     "way/generators": "~2.0",
 		"fzaninotto/faker": "v1.3.0",
 		"cartalyst/sentry": "2.1.*",
-		"tymon/jwt-auth": "0.3.*"
+		"guzzlehttp/guzzle": "4.2.1",
+		"firebase/php-jwt": "dev-master",
+		"guzzlehttp/oauth-subscriber": "0.1.2"
 	},
 	"autoload": {
 		"classmap": [
