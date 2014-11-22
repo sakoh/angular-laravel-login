@@ -1,11 +1,10 @@
-angular.module('blue_media.register_controller',[
-  //'blue_media.services'
-  'restangular'
-]).
-  controller('RegisterCtrl', function($scope, Auth, Restangular, $location){
+angular.module('blue_media.admin_user_create_controller', ['restangular','ui.router']).
+  controller('CreateCtrl', function($scope, $location, Restangular){
 
-    $scope.register = function() {
-      if($scope.user.password === $scope.passwordConfirm){
+    $scope.addUser = function(){
+
+
+      if($scope.user.password === $scope.user.passwordConfirm){
 
         Restangular.all('users').post($scope.user).then(function(model){
           return $location.path('/');
@@ -17,5 +16,4 @@ angular.module('blue_media.register_controller',[
         $scope.errorMessage = 'passwords have to match';
       }
     }
-
   });

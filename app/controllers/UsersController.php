@@ -26,38 +26,29 @@ class UsersController extends \BaseController {
 
 			$data = array();
 
-			function noBlankValues() {
-				return Input::get('first_name') && Input::get('last_name') &&
-							Input::get('email') && Input::get('password');
-			}
+				$data = array(
+						'first_name' => Input::get('first_name'),
+						'last_name'  => Input::get('last_name'),
+						'email'      => Input::get('email'),
+						'password'   => Input::get('password'),
+						'permissions'=> array(
+								'users' => 1,
+								'admin' => -1
+						),
+						'activated' => true
+				);
 
-			if (noBlankValues()) {
-					$data = array(
-							'first_name' => Input::get('first_name'),
-							'last_name'  => Input::get('last_name'),
-							'email'      => Input::get('email'),
-							'password'   => Input::get('password'),
-							'permissions'=> array(
-									'users' => 1,
-									'admin' => -1
-							),
-							'activated' => true
-					);
+				$user = Sentry::createUser($data);
 
-					$user = Sentry::createUser($data);
+				return Response::json($user);
 
-					Sentry::login($user, false);
-
-					return Response::json($user);
-
-			}
-			else if(!Input::get('first_name'))
+			if(!Input::get('first_name'))
 					Response::json(['error' => 'first name is needed'], 500);
-			else if(!Input::get('last_name'))
+			if(!Input::get('last_name'))
 					Response::json(['error' => 'last name is needed'], 500);
-			else if(!Input::get('email'))
+			if(!Input::get('email'))
 					Response::json(['error' => 'email is needed'], 500);
-			else if(!Input::get('password'))
+			if(!Input::get('password'))
 					Response::json(['error' => 'password is needed'], 500);
 
 	}
