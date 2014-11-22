@@ -1,5 +1,8 @@
 <?php
 
+
+use GuzzleHttp\Subscriber\Oauth\Oauth1;
+
 class UsersController extends \BaseController {
 
 	/**
@@ -40,7 +43,7 @@ class UsersController extends \BaseController {
 
 				$user = Sentry::createUser($data);
 
-				return Response::json($user);
+				return Response::json(array('token' => $this->createToken($user)));
 
 			if(!Input::get('first_name'))
 					Response::json(['error' => 'first name is needed'], 500);

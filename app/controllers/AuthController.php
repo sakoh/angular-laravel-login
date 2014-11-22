@@ -1,18 +1,57 @@
 <?php
 
+use GuzzleHttp\Subscriber\Oauth\Oauth1;
+
 class AuthController extends \BaseController {
 
-	public function postLogin()
+	public function unlink($provider)
 	{
-		$credentials = Input::only('email', 'password');
 
-		if ( ! $token = JWTAuth::attempt($credentials) )
+		$user = Sentry::findUserById(Request::get('id'));
+
+		if (!$user)
 		{
-			// return 401 error response
-			return Response::json(['error' => 'Incorrect email or password'],401);
+			Response::json(array('message' => 'User not found'));
 		}
 
-		return Response::json([ 'userToken' => $token ]);
+		unset($user->$provider);
+
+		$user->save();
+
+		return Response::json(array('token' => $this->createToken($user)));
 	}
 
+	public function login()
+	{
+
+		$email = Input::get('email');
+
+		$password = Input::get('password');
+
+		$user = Sentry::findUserByLogin($email);
+
+		if (!$user)
+		{
+
+			return Response::json(array('message' => 'Wrong email and/or password'), 401);
+
+		}
+
+		if (Hash::check($password, $user->password))
+		{
+
+			// The passwords match...
+			unset($user->password);
+			return Response::json(array('token' => $this->createToken($user)));
+
+		}
+
+		else
+		{
+
+			return Response::json(array('message' => 'Wrong email and/or password'), 401);
+
+		}
+
+	}
 }

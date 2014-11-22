@@ -15,10 +15,10 @@ Route::get('/', function(){
 	return View::make('index');
 });
 
+
+Route::post('login', 'AuthController@login');
+
 Route::group(array('prefix'=>'api/v1'), function(){
-
-
-	Route::post('/login', 'AuthController@postLogin');
 
 	Route::post('/admin/login', 'AdminController@postLogin');
 
