@@ -38,7 +38,23 @@ angular.module('blue_media', [
 					url:'login',
 					controller: 'LoginCtrl',
 					templateUrl: 'js/templates/login.html'
-				})/*
+				}).
+				state('home.profile', {
+					url: '/profile',
+					templateUrl: 'js/templates/profile.html',
+					controller: function() {
+					  // body...
+					},
+					resolve: {
+						authenticated: function($location, $auth) {
+							if (!$auth.isAuthenticated()) {
+								return $location.path('/login');
+							}
+						}
+					}
+				});
+
+					/*
       	protectedState('admin', {
 					url:'admin',
       		templateUrl:'js/templates/admin/index.html',
