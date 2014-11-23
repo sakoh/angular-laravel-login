@@ -139,4 +139,13 @@ class UsersController extends \BaseController {
 		}
 	}
 
+	public function getUser()
+	{
+		$token = explode(' ', Request::header('Authorization'))[1];
+		$payloadObject = JWT::decode($token, Config::get('secrets.TOKEN_SECRET'));
+		$payload = json_decode(json_encode($payloadObject), true);
+		$user = Sentry::findUserById($payload['sub']);
+		return $user;
+	}
+
 }

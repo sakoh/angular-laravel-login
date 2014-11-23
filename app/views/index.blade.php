@@ -17,8 +17,10 @@
     {{ HTML::script('js/libs/lodash/dist/lodash.min.js')}}
     {{ HTML::script('js/libs/restangular/dist/restangular.min.js')}}
     {{ HTML::script('js/libs/satellizer/satellizer.min.js')}}
+    {{ HTML::script('js/config.js')}}
     {{ HTML::script('js/controllers/index.js')}}
     {{ HTML::script('js/directives.js')}}
+    {{ HTML::script('js/services/account.js')}}
     {{ HTML::script('js/controllers/register.js')}}
     {{ HTML::script('js/controllers/login.js')}}
     {{ HTML::script('js/controllers/admin/users/show.js')}}

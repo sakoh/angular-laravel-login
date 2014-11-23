@@ -8,6 +8,8 @@ angular.module('blue_media.index_controller', [
     };
 
     $scope.logout = function() {
-      $auth.logout();
+      $auth.logout().then(function() {
+        alert('You have been logged out');
+      });
     }
   });
