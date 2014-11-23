@@ -25,7 +25,7 @@ Route::group(array('prefix'=>'api/v1'), function(){
 
 	Route::resource('/users','UsersController');
 
-	Route::group(array('before' => 'Sentry'),function(){
+	Route::group(array('before' => 'Sentry'), function(){
 
 		Route::get('logout', 'AuthController@logout');
 

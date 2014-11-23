@@ -9,7 +9,7 @@ angular.module('blue_media.login_controller',[
     $auth.login({ email: $scope.user.email, password: $scope.user.password })
     .then(function() {
       alert('You have successfully logged in');
-    }, errorHandler);
+    }).catch(errorHandler);
 
   };
 
@@ -18,12 +18,12 @@ angular.module('blue_media.login_controller',[
     $auth.authenticate(provider)
     .then(function() {
       alert('You have successfully logged in');
-    }, errorHandler);
+    }).catch(errorHandler);
 
   };
 
-  function errorHandler (error) {
-    console.log(error);
+  function errorHandler (response) {
+    alert(response.data.message);
   }
 
 });
