@@ -7,8 +7,9 @@ angular.module('blue_media.login_controller',[
   $scope.login = function() {
 
     $auth.login({ email: $scope.user.email, password: $scope.user.password })
-    .then(function() {
-      alert('You have successfully logged in');
+    .then(function(user) {
+      current_user = user;
+      alert('You have successfully logged in as ' + current_user.email);
     }).catch(errorHandler);
 
   };
@@ -16,8 +17,9 @@ angular.module('blue_media.login_controller',[
   $scope.authenticate = function(provider) {
 
     $auth.authenticate(provider)
-    .then(function() {
-      alert('You have successfully logged in');
+    .then(function(user) {
+      $scope.current_user = user;
+      alert('You have successfully logged in as ' + $scope.current_user.email);
     }).catch(errorHandler);
 
   };

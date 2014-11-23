@@ -27,9 +27,7 @@ angular.module('blue_media', [
 				state('home.profile', {
 					url: 'profile',
 					templateUrl: 'js/templates/profile.html',
-					controller: function() {
-					  // body...
-					},
+					controller: 'ProfileCtrl',
 					resolve: {
 						authenticated: function($location, $auth) {
 							if (!$auth.isAuthenticated()) {

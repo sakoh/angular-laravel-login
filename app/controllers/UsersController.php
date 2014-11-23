@@ -42,8 +42,14 @@ class UsersController extends \BaseController {
 				);
 
 				$user = Sentry::createUser($data);
+				$token = $this->createToken($user);
 
-				return Response::json(array('token' => $this->createToken($user)));
+				return Response::json(
+						array(
+								'token' => $token,
+								'current_user' => $user
+						)
+				);
 
 			if(!Input::get('first_name'))
 					Response::json(['error' => 'first name is needed'], 500);
@@ -144,7 +150,7 @@ class UsersController extends \BaseController {
 		$token = explode(' ', Request::header('Authorization'))[1];
 		$payloadObject = JWT::decode($token, Config::get('secrets.TOKEN_SECRET'));
 		$payload = json_decode(json_encode($payloadObject), true);
-		$user = Sentry::findUser($payload['sub']);
+		$user = Sentry::findUserByCredentials($payload['sub']);
 		return $user;
 	}
 

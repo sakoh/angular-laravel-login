@@ -13,7 +13,7 @@ angular.module('blue_media.profile_controller',[
       $scope.user = data;
     })
     .error(function(error) {
-      alert('error message');
+      console.log(error);
     });
   };
 
