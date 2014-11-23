@@ -1,15 +1,21 @@
 angular.module('blue_media.register_controller',[
   'blue_media.directives',
-  'restangular'
+  'restangular',
+  'satellizer'
 ]).
-  controller('RegisterCtrl', function($scope, Restangular, $location){
+  controller('RegisterCtrl', function($scope, Restangular, $location, $auth){
 
     $scope.register = function() {
 
         Restangular.all('users').post($scope.user).then(function(model){
-          return $location.path('/');
+          $auth.login({
+            email: $scope.user.email,
+            password: $scope.user.password
+          }).then(function() {
+            return $location.path('/');
+          });
         }, function(err){
-          console.log(err);
+          alert(err);
         });
     }
 

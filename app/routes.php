@@ -15,7 +15,7 @@ Route::get('/', function(){
 	return View::make('index');
 });
 
-Route::get('api/me', array('before' => 'auth', 'uses' => 'UserController@getUser'));
+Route::get('api/me', array('uses' => 'UsersController@getUser'));
 Route::put('api/me', array('before' => 'auth', 'uses' => 'UserController@updateUser'));
 
 
