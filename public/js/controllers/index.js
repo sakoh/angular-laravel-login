@@ -1,4 +1,13 @@
-angular.module('blue_media.index_controller', ['restangular']).
-  controller('IndexCtrl',function($scope){
+angular.module('blue_media.index_controller', [
+  'restangular',
+  'satellizer'
+]).
+  controller('IndexCtrl',function($scope, $auth){
+    $scope.isAuthenticated = function() {
+      return $auth.isAuthenticated();
+    };
 
+    $scope.logout = function() {
+      $auth.logout();
+    }
   });

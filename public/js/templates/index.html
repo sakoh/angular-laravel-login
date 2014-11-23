@@ -12,16 +12,19 @@
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li>
-          <a ui-sref="home.register">Register</a>
+          <a ng-if="!isAuthenticated()" ui-sref="home.register">Register</a>
         </li>
         <li>
-          <a ui-sref="home.profile">Profile</a>
+          <a ng-if="isAuthenticated()" ui-sref="home.profile">Profile</a>
         </li>
 
       </ul>
       <ul class="nav navbar-right navbar-nav">
-        <li class="dropdown" id="menuLogin">
+        <li ng-if="!isAuthenticated()" class="dropdown" id="menuLogin">
           <a class="dropdown-toggle" ui-sref="home.login" data-toggle="dropdown" id="navLogin">Login <span class="glyphicon glyphicon-log-in"></span></a>
+        </li>
+        <li ng-if="isAuthenticated()" class="dropdown" id="menuLogout">
+          <a class="dropdown-toggle" href='#' ng-click='logout()' data-toggle="dropdown" id="navLogout">Logout <span class="glyphicon glyphicon-log-out"></span></a>
         </li>
       </ul>
     </nav>
