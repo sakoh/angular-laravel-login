@@ -7,27 +7,23 @@ angular.module('blue_media.login_controller',[
   $scope.login = function() {
 
     $auth.login({ email: $scope.user.email, password: $scope.user.password })
-    .success(function() {
+    .then(function() {
       alert('You have successfully logged in');
-    })
-    .error(function(response) {
-      alert(response.data.message);
-    });
+    }, errorHandler);
 
   };
 
   $scope.authenticate = function(provider) {
 
     $auth.authenticate(provider)
-    .success(function() {
-
+    .then(function() {
       alert('You have successfully logged in');
-    })
-    .error(function(response) {
-
-      alert(response.data.message);
-    });
+    }, errorHandler);
 
   };
+
+  function errorHandler (error) {
+    console.log(error);
+  }
 
 });
