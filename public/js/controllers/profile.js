@@ -1,8 +1,9 @@
 angular.module('blue_media.profile_controller',[
   'satellizer',
+  'restangular',
   'blue_media.account'
 ])
-.controller('ProfileCtrl', function($scope, $auth, Account) {
+.controller('ProfileCtrl', function($scope, $auth, Account, Restangular) {
 
   /**
   * Get user's profile information.
@@ -22,11 +23,14 @@ angular.module('blue_media.profile_controller',[
   * Update user's profile information.
   */
   $scope.updateProfile = function() {
-    Account.updateProfile({
-      displayName: $scope.user.displayName,
-      email: $scope.user.email
-    }).then(function() {
-      alert('Profile got updated');
+    Restangular.one('users', $scope.user.id).get().then(function(user){
+      user.first_name = $scope.user.first_name;
+      user.last_name = $scope.user.last_name;
+      user.email = $scope.user.email;
+
+      user.put().then(function(){
+        return alert('Provide edited');
+      });
     });
   };
 

@@ -7,7 +7,7 @@ angular.module('blue_media.account',[
       return $http.get(API_URL + '/me');
     },
     updateProfile: function(profileData) {
-      return $http.put(API_URL + '/api/me', profileData);
+      return $http.put(API_URL + '/me', profileData);
     }
   };
 });

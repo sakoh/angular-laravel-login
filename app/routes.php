@@ -15,13 +15,13 @@ Route::get('/', function(){
 	return View::make('index');
 });
 
-Route::put('api/me', array('before' => 'auth', 'uses' => 'UserController@updateUser'));
-
 
 Route::group(array('prefix'=>'api/v1'), function(){
 
 
 	Route::get('me', array('uses' => 'UsersController@getUser'));
+
+	Route::put('me', array('uses' => 'UsersController@updateUser'));
 
 	Route::post('auth/login', 'AuthController@login');
 
