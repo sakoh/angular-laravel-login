@@ -12,11 +12,10 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = Sentry::findAllUsers();
+		$users = User::all();
 
 		return Response::json($users);
 	}
-
 
 
 	/**
@@ -33,33 +32,13 @@ class UsersController extends \BaseController {
 						'first_name' => Input::get('first_name'),
 						'last_name'  => Input::get('last_name'),
 						'email'      => Input::get('email'),
-						'password'   => Input::get('password'),
-						'permissions'=> array(
-								'users' => 1,
-								'admin' => -1
-						),
-						'activated' => true
+						'password'   => Input::get('password')
 				);
 
 				$user = Sentry::createUser($data);
 				$token = $this->createToken($user);
 
-				return Response::json(
-						array(
-								'token' => $token,
-								'current_user' => $user
-						)
-				);
-
-			if(!Input::get('first_name'))
-					Response::json(['error' => 'first name is needed'], 500);
-			if(!Input::get('last_name'))
-					Response::json(['error' => 'last name is needed'], 500);
-			if(!Input::get('email'))
-					Response::json(['error' => 'email is needed'], 500);
-			if(!Input::get('password'))
-					Response::json(['error' => 'password is needed'], 500);
-
+				return Response::json(compact('token'));
 	}
 
 
