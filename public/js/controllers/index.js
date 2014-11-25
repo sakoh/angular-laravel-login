@@ -9,6 +9,7 @@ angular.module('blue_media.index_controller', [
 
     $scope.logout = function() {
       $auth.logout().then(function() {
+        localStorage.clear();
         alert('You have been logged out');
       });
     }

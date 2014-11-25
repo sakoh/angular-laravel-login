@@ -10,6 +10,9 @@ angular.module('blue_media.login_controller',[
     $auth.login({ email: $scope.user.email, password: $scope.user.password })
     .then(function(response) {
       Account.user = response.data.current_user;
+      localStorage.setItem('first_name', Account.user.first_name);
+      localStorage.setItem('last_name', Account.user.last_name);
+      localStorage.setItem('email', Account.user.email);
       alert('You have successfully logged in as ' + Account.user.email);
     }).catch(errorHandler);
 
