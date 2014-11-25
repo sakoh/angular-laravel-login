@@ -94,7 +94,7 @@ return array(
 	*/
 
 	'providers' => array(
-		'Barryvdh\Cors\CorsServiceProvider',
+		'Cartalyst\Sentry\SentryServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
@@ -182,6 +182,7 @@ return array(
 		'Route'             => 'Illuminate\Support\Facades\Route',
 		'Schema'            => 'Illuminate\Support\Facades\Schema',
 		'Seeder'            => 'Illuminate\Database\Seeder',
+		'Sentry' 						=> 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'Session'           => 'Illuminate\Support\Facades\Session',
 		'SoftDeletingTrait' => 'Illuminate\Database\Eloquent\SoftDeletingTrait',
 		'SSH'               => 'Illuminate\Support\Facades\SSH',
