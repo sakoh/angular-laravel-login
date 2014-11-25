@@ -5,8 +5,14 @@ angular.module('blue_media.account',[
 .factory('Account', function($http, $auth, API_URL, Restangular) {
 
   return {
+    user: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: ''
+    },
     getProfile: function() {
-      return $http.get(API_URL + '/me');
+      return this.user;
     },
     updateProfile: function(profileData) {
       Restangular.one('users', profileData.id).get().then(function(user){

@@ -42,7 +42,12 @@ class AuthController extends \BaseController {
 
 			// The passwords match...
 			unset($user->password);
-			return Response::json(array('token' => $this->createToken($user)));
+					return Response::json(
+							array(
+									'token' => $this->createToken($user),
+									'current_user' => $user
+							)
+					);
 
 		}
 

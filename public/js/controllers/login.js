@@ -1,15 +1,16 @@
 angular.module('blue_media.login_controller',[
   'restangular',
-  'satellizer'
+  'satellizer',
+  'blue_media'
 ])
-.controller('LoginCtrl', function($scope, $auth) {
+.controller('LoginCtrl', function($scope, $auth, Account) {
 
   $scope.login = function() {
 
     $auth.login({ email: $scope.user.email, password: $scope.user.password })
-    .then(function(user) {
-      current_user = user;
-      alert('You have successfully logged in as ' + current_user.email);
+    .then(function(response) {
+      Account.user = response.data.current_user;
+      alert('You have successfully logged in as ' + Account.user.email);
     }).catch(errorHandler);
 
   };

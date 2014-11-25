@@ -9,13 +9,7 @@ angular.module('blue_media.profile_controller',[
   * Get user's profile information.
   */
   $scope.getProfile = function() {
-    Account.getProfile()
-    .success(function(data) {
-      $scope.user = data;
-    })
-    .error(function(error) {
-      console.log(error);
-    });
+    $scope.user = Account.getProfile();
   };
 
 
