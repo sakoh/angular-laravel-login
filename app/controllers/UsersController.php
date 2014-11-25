@@ -51,7 +51,7 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		try{
-			$Sentry = Sentry::findSentryById($id);
+			$Sentry = Sentry::findUserById($id);
 
 			return Response::json($Sentry);
 		}
@@ -73,7 +73,7 @@ class UsersController extends \BaseController {
 		try
 		{
 			// Find the Sentry using the Sentry id
-			$Sentry = Sentry::findSentryById($id);
+			$Sentry = Sentry::findUserById($id);
 
 			// Update the Sentry details
 			if(Input::get('first_name')) $Sentry->first_name = Input::get('first_name');
@@ -111,7 +111,7 @@ class UsersController extends \BaseController {
 		try
 		{
 			// Find the Sentry using the Sentry id
-			$Sentry = Sentry::findSentryById($id);
+			$Sentry = Sentry::findUserById($id);
 
 			// Delete the Sentry
 			$Sentry->delete();
@@ -129,7 +129,7 @@ class UsersController extends \BaseController {
 		$token = explode(' ', Request::header('Authorization'))[1];
 		$payloadObject = JWT::decode($token, Config::get('secrets.TOKEN_SECRET'));
 		$payload = json_decode(json_encode($payloadObject), true);
-		$Sentry = Sentry::findSentryById($payload['sub']);
+		$Sentry = Sentry::findUserById($payload['sub']);
 		return $Sentry;
 	}
 
@@ -138,7 +138,7 @@ class UsersController extends \BaseController {
 		$token = explode(' ', Request::header('Authorization'))[1];
 		$payloadObject = JWT::decode($token, Config::get('secrets.TOKEN_SECRET'));
 		$payload = json_decode(json_encode($payloadObject), true);
-		$Sentry = Sentry::findSentryById($payload['sub']);
+		$Sentry = Sentry::findUserById($payload['sub']);
 		$Sentry->displayName = Input::get('displayName', $Sentry->displayName);
 		$Sentry->email = Input::get('email', $Sentry->email);
 		$Sentry->save();
