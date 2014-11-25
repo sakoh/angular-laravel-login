@@ -1,13 +1,25 @@
 angular.module('blue_media.account',[
-  'satellizer'
+  'satellizer',
+  'restangular'
 ])
-.factory('Account', function($http, $auth, API_URL) {
+.factory('Account', function($http, $auth, API_URL, Restangular) {
+
   return {
     getProfile: function() {
       return $http.get(API_URL + '/me');
     },
     updateProfile: function(profileData) {
-      return $http.put(API_URL + '/me', profileData);
+      Restangular.one('users', profileData.id).get().then(function(user){
+        user.first_name = profileData.first_name;
+        user.last_name = profileData.last_name;
+        user.email = profileData.email;
+
+        user.put().then(function(){
+          return alert('Profile edited');
+        }, function (error) {
+          alert(error);
+        });
+      });
     }
-  };
+  }
 });

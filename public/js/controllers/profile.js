@@ -23,16 +23,8 @@ angular.module('blue_media.profile_controller',[
   * Update user's profile information.
   */
   $scope.updateProfile = function() {
-    Restangular.one('users', $scope.user.id).get().then(function(user){
-      user.first_name = $scope.user.first_name;
-      user.last_name = $scope.user.last_name;
-      user.email = $scope.user.email;
-
-      user.put().then(function(){
-        return alert('Provide edited');
-      });
-    });
-  };
+    return Account.updateProfile($scope.user)
+  }
 
   /**
   * Link third-party provider.
