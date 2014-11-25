@@ -6,20 +6,20 @@ use GuzzleHttp\Subscriber\Oauth\Oauth1;
 class UsersController extends \BaseController {
 
 	/**
-	 * Display a listing of users
+	 * Display a listing of Sentrys
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		$users = User::all();
+		$Sentrys = Sentry::findAllUsers();
 
-		return Response::json($users);
+		return Response::json($Sentrys);
 	}
 
 
 	/**
-	 * Store a newly created user in storage.
+	 * Store a newly created Sentry in storage.
 	 *
 	 * @return Response
 	 */
@@ -35,15 +35,15 @@ class UsersController extends \BaseController {
 						'password'   => Input::get('password')
 				);
 
-				$user = Sentry::createUser($data);
-				$token = $this->createToken($user);
+				$Sentry = Sentry::createSentry($data);
+				$token = $this->createToken($Sentry);
 
 				return Response::json(compact('token'));
 	}
 
 
 	/**
-	 * Display the specified user.
+	 * Display the specified Sentry.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -51,19 +51,19 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		try{
-			$user = Sentry::findUserById($id);
+			$Sentry = Sentry::findSentryById($id);
 
-			return Response::json($user);
+			return Response::json($Sentry);
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (Cartalyst\Sentry\Sentrys\SentryNotFoundException $e)
 		{
-			echo 'User was not found.';
+			echo 'Sentry was not found.';
 		}
 	}
 
 
 	/**
-	 * Update the specified user in storage.
+	 * Update the specified Sentry in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -72,36 +72,36 @@ class UsersController extends \BaseController {
 	{
 		try
 		{
-			// Find the user using the user id
-			$user = Sentry::findUserById($id);
+			// Find the Sentry using the Sentry id
+			$Sentry = Sentry::findSentryById($id);
 
-			// Update the user details
-			if(Input::get('first_name')) $user->first_name = Input::get('first_name');
-			if(Input::get('last_name'))  $user->last_name = Input::get('last_name');
-			if(Input::get('email'))      $user->email = Input::get('email');
-			if(Input::get('password'))   $user->password = Input::get('password');
-			// Update the user
-			if ($user->save())
+			// Update the Sentry details
+			if(Input::get('first_name')) $Sentry->first_name = Input::get('first_name');
+			if(Input::get('last_name'))  $Sentry->last_name = Input::get('last_name');
+			if(Input::get('email'))      $Sentry->email = Input::get('email');
+			if(Input::get('password'))   $Sentry->password = Input::get('password');
+			// Update the Sentry
+			if ($Sentry->save())
 			{
-				return Response::json($user);
+				return Response::json($Sentry);
 			}
 			else
 			{
-				echo 'User was not updated';
+				echo 'Sentry was not updated';
 			}
 		}
-		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		catch (Cartalyst\Sentry\Sentrys\SentryExistsException $e)
 		{
-			echo 'User with this login already exists.';
+			echo 'Sentry with this login already exists.';
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (Cartalyst\Sentry\Sentrys\SentryNotFoundException $e)
 		{
-			echo 'User was not found.';
+			echo 'Sentry was not found.';
 		}
 	}
 
 	/**
-	 * Remove the specified user from storage.
+	 * Remove the specified Sentry from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -110,17 +110,17 @@ class UsersController extends \BaseController {
 	{
 		try
 		{
-			// Find the user using the user id
-			$user = Sentry::findUserById($id);
+			// Find the Sentry using the Sentry id
+			$Sentry = Sentry::findSentryById($id);
 
-			// Delete the user
-			$user->delete();
+			// Delete the Sentry
+			$Sentry->delete();
 
-			echo 'User was deleted.';
+			echo 'Sentry was deleted.';
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (Cartalyst\Sentry\Sentrys\SentryNotFoundException $e)
 		{
-			echo 'User was not found.';
+			echo 'Sentry was not found.';
 		}
 	}
 
@@ -129,8 +129,8 @@ class UsersController extends \BaseController {
 		$token = explode(' ', Request::header('Authorization'))[1];
 		$payloadObject = JWT::decode($token, Config::get('secrets.TOKEN_SECRET'));
 		$payload = json_decode(json_encode($payloadObject), true);
-		$user = Sentry::findUserById($payload['sub']);
-		return $user;
+		$Sentry = Sentry::findSentryById($payload['sub']);
+		return $Sentry;
 	}
 
 	public function updateUser()
@@ -138,11 +138,11 @@ class UsersController extends \BaseController {
 		$token = explode(' ', Request::header('Authorization'))[1];
 		$payloadObject = JWT::decode($token, Config::get('secrets.TOKEN_SECRET'));
 		$payload = json_decode(json_encode($payloadObject), true);
-		$user = Sentry::findUserById($payload['sub']);
-		$user->displayName = Input::get('displayName', $user->displayName);
-		$user->email = Input::get('email', $user->email);
-		$user->save();
-		$token = $this->createToken($user);
+		$Sentry = Sentry::findSentryById($payload['sub']);
+		$Sentry->displayName = Input::get('displayName', $Sentry->displayName);
+		$Sentry->email = Input::get('email', $Sentry->email);
+		$Sentry->save();
+		$token = $this->createToken($Sentry);
 		return Response::json(array('token' => $token));
 	}
 
