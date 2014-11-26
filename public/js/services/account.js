@@ -25,9 +25,7 @@ angular.module('blue_media.account',[
         user.email = profileData.email;
 
         user.put().then(function(){
-          return alert('Profile edited');
-        }, function (error) {
-          alert(error);
+          alert('profile updated');
         });
       });
     }

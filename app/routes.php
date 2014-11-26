@@ -22,9 +22,9 @@ Route::group(array('prefix'=>'api/v1'), function(){
 
 	Route::post('auth/signup', 'AuthController@signup');
 
-	Route::post('/admin/login', 'AdminController@postLogin');
+	Route::post('admin/login', 'AdminController@postLogin');
 
-	Route::resource('/users','UsersController');
+	Route::resource('users','UsersController');
 
 	Route::group(array('before' => 'auth'), function(){
 
