@@ -18,26 +18,15 @@ Route::get('/', function(){
 
 Route::group(array('prefix'=>'api/v1'), function(){
 
-
-	Route::get('me', array('uses' => 'UsersController@getUser'));
-
-	Route::put('me', array('uses' => 'UsersController@updateUser'));
-
 	Route::post('auth/login', 'AuthController@login');
 
 	Route::post('/admin/login', 'AdminController@postLogin');
 
 	Route::resource('/users','UsersController');
 
-	Route::group(array('before' => 'Sentry'), function(){
+	Route::group(array('before' => 'auth'), function(){
 
 		Route::get('logout', 'AuthController@logout');
-
-	});
-
-	Route::group(array('prefix' => 'admin','before' => 'AdminSentry'),function(){
-
-		Route::get('logout', 'AdminController@logout');
 
 	});
 
