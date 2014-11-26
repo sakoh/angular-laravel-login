@@ -19,6 +19,8 @@ Route::get('/', function(){
 Route::group(array('prefix'=>'api/v1'), function(){
 
 	Route::post('auth/login', 'AuthController@login');
+	
+	Route::post('auth/signup', 'AuthController@signup');
 
 	Route::post('/admin/login', 'AdminController@postLogin');
 

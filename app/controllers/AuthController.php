@@ -59,4 +59,35 @@ class AuthController extends \BaseController {
 		}
 
 	}
+
+	public function signup()
+	{
+		$input['first_name'] = Input::get('first_name');
+		$input['last_name'] = Input::get('last_name');
+		$input['email'] = Input::get('email');
+		$input['password'] = Input::get('password');
+
+		$rules = array(
+				'first_name' => 'required',
+				'last_name' => 'required',
+				'email' => 'required|email|unique:users,email',
+				'password' => 'required|min:8'
+		);
+
+		$validator = Validator::make($input, $rules);
+		if ($validator->fails()) {
+			return Response::json(array('success'=>'false', 'error'=>$validator->messages()), 404);
+		}
+		else
+		{
+			$user = Sentry::createUser($input);
+			return Response::json(
+					array(
+							'token' => $this->createToken($user),
+							'current_user' => $user
+					)
+			);
+		}
+	}
+
 }

@@ -25,7 +25,7 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-
+		try{
 			$data = array();
 
 				$data = array(
@@ -39,6 +39,13 @@ class UsersController extends \BaseController {
 				$token = $this->createToken($user);
 
 				return Response::json(compact('token'));
+
+			}
+			catch (Cartalyst\Sentry\Users\UserExistsException $e)
+			{
+				echo 'User with this login already exists.';
+			}
+
 	}
 
 
