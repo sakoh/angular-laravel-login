@@ -87,7 +87,7 @@ class UsersController extends \BaseController {
 			if(Input::get('last_name'))  $user->last_name = Input::get('last_name');
 			if(Input::get('email'))      $user->email = Input::get('email');
 			if(Input::get('password'))   $user->password = Input::get('password');
-			// Update the Sentry
+			// Update the User
 			if ($user->save())
 			{
 				return Response::json($user);
