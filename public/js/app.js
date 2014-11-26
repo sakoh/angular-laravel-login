@@ -35,18 +35,6 @@ angular.module('blue_media', [
 							}
 						}
 					}
-				}).
-				state('home.change_password', {
-					url: 'change_password',
-					templateUrl: 'js/templates/change_password.html',
-					controller: 'ChangePasswordCtrl',
-					resolve: {
-						authenticated: function($location, $auth) {
-							if (!$auth.isAuthenticated()) {
-								return $location.path('/login');
-							}
-						}
-					}
 				});
 
 					/*

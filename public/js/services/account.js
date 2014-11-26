@@ -23,6 +23,7 @@ angular.module('blue_media.account',[
         user.first_name = profileData.first_name;
         user.last_name = profileData.last_name;
         user.email = profileData.email;
+        user.password = profileData.password;
 
         user.put().then(function(){
           alert('profile updated');
