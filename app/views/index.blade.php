@@ -23,6 +23,7 @@
     {{ HTML::script('js/services/account.js')}}
     {{ HTML::script('js/controllers/register.js')}}
     {{ HTML::script('js/controllers/profile.js')}}
+    {{ HTML::script('js/controllers/change_profile.js')}}
     {{ HTML::script('js/controllers/login.js')}}
     {{ HTML::script('js/controllers/admin/users/show.js')}}
     {{ HTML::script('js/controllers/admin/users/create.js')}}
